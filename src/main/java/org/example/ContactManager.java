@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 import static java.lang.System.out;
 
-// TODO: 10/15/22 formatting for all the strings centered etc.
 public class ContactManager {
     //    Variables for file name and path
     public static String filename = "contacts.txt";
@@ -23,6 +22,7 @@ public class ContactManager {
     public static List<String> contactList = new ArrayList<>();
 
     // Prints the contactList in alphabetical order based on first name values
+// TODO: 10/18/22 Sort no longer works because of the | added to beginning - look up Collections.sort
 
     public static void printList(Scanner sc) {
         String header = "|" + StringUtils.center("NAME", 31) + "|" + StringUtils.center("PHONE", 16) + "|";
@@ -47,6 +47,7 @@ public class ContactManager {
         number = sc.nextLine();
         Contact newContact = new Contact(firstName, lastName, number);
         addToContactList(newContact);
+        out.println("\n" + Menus.breakPt + "\n" +StringUtils.center("The following contact has been added", 50) + "\n" + Menus.breakPt + "\n" +  newContact);
         Menus.returnMenu(sc, "1. Add another contact", ContactManager::searchContact);
         return addContact(sc);
 

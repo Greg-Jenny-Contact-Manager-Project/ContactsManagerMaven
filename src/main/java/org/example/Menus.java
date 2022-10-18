@@ -79,7 +79,6 @@ public class Menus {
     }
 
 
-
 // Main menu switch statement for navigation through the application
     public static void mainMenu(Scanner sc) {
         int choice = getChoice(sc);
