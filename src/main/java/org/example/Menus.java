@@ -4,17 +4,16 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.function.Consumer;
 
 public class Menus {
 
-// variables to make printing menus and messages more compact
+    // variables to make printing menus and messages more compact
     private static String byee = StringUtils.center("Thank you for using GREY Contact Manager!", 50);
     public static String breakPt = "--------------------------------------------------";
 
-// Method accepts sc, a prompt, and a method. Prints prompt as menu item and inserts method in switch statement.
+    // Method accepts sc, a prompt, and a method. Prints prompt as menu item and inserts method in switch statement.
     public static Consumer<Scanner> returnMenu(Scanner sc, String prompt, Consumer<Scanner> method) {
         System.out.println("\n" + breakPt + "\n" + prompt +
                 "\n2. Return to main menu\n" +
@@ -34,7 +33,7 @@ public class Menus {
         return method;
     }
 
-//Overloaded of above to set default menu and methods for switch - Only in use for 1. View Contacts
+    //Overloaded of above to set default menu and methods for switch - Only in use for 1. View Contacts
     public static void returnMenu(Scanner sc) {
         System.out.println("\n" + breakPt +
                 "\n1. Return to main menu\n" +
@@ -51,9 +50,9 @@ public class Menus {
         }
     }
 
-/*  1. Prints a goodbye messages
-    2. writes each String within the contactList array to a separate line in the contact.txt file
-    3. executes a System.exit to close the program */
+    /*  1. Prints a goodbye messages
+        2. writes each String within the contactList array to a separate line in the contact.txt file
+        3. executes a System.exit to close the program */
     public static void exit() {
         try {
             System.out.println(breakPt + "\n" + byee + "\n" + breakPt);
@@ -64,12 +63,12 @@ public class Menus {
         }
     }
 
-// Prints the main menu on application startup, runs the mainMenu Method for control.
+    // Prints the main menu on application startup, runs the mainMenu Method for control.
     public static void printMainMenu(Scanner sc) {
         System.out.println(
                 breakPt + "\n" +
                         StringUtils.center("Welcome", 50) + "\n" +
-                        breakPt +"\n" +
+                        breakPt + "\n" +
                         "1. View contacts\n" +
                         "2. Add a new contact\n" +
                         "3. Search a contact by name\n" +
@@ -81,32 +80,43 @@ public class Menus {
         mainMenu(sc);
     }
 
-    // TODO: 10/18/22 This try catch only exits the system. If I try to use recursion it runs the Method endlessly.
+
+
 // Main menu switch statement for navigation through the application
     public static void mainMenu(Scanner sc) {
-        try {
-            int choice = sc.nextInt();
-            sc.nextLine();
-            switch (choice) {
-                case 1:
-                    ContactManager.printList(sc);
-                    break;
-                case 2:
-                    ContactManager.addContact(sc);
-                    break;
-                case 3:
-                    ContactManager.searchContact(sc);
-                    break;
-                case 4:
-                    ContactManager.deleteContact(sc);
-                    break;
-                case 5:
-                    exit();
-                    break;
-            }
-        } catch (InputMismatchException e) {
-            System.out.println("Enter a valid input");
+        int choice = getChoice(sc);
+        switch (choice) {
+            case 1:
+                ContactManager.printList(sc);
+                break;
+            case 2:
+                ContactManager.addContact(sc);
+                break;
+            case 3:
+                ContactManager.searchContact(sc);
+                break;
+            case 4:
+                ContactManager.deleteContact(sc);
+                break;
+            case 5:
+                exit();
+                break;
+            default:
+                printMainMenu(sc);
         }
     }
+
+    public static int getChoice(Scanner sc) {
+        int choice = 0;
+        try {
+            choice = Integer.parseInt(sc.nextLine());
+            return choice;
+
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input, please try again!");
+            return getChoice(sc);
+        }
+    }
+
 } // Menu CLASS close
 
