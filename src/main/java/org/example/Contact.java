@@ -10,23 +10,11 @@ public class Contact  {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
-        this.fullName = firstName + " " + lastName;
-    }
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getPhone() {
-        return phone;
     }
 
 // The toString Method overrides the java Object toString method and dictates how the object should be converted to a string
     public String toString() {
-        String stringContact = "| " + StringUtils.center(firstName, 12) +"| " + StringUtils.center(lastName, 16) + "|" + StringUtils.center(phone, 16) + "|";
+        String stringContact = StringUtils.center(firstName, 11) +"| " + StringUtils.center(lastName, 16) + "|" + StringUtils.center(phone, 16) + "|";
         return stringContact;
     }
 // - The StringUtils id part of the Apache common langs package

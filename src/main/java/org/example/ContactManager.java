@@ -32,8 +32,7 @@ public class ContactManager {
         Menus.returnMenu(sc);
     }
 
-    // TODO: 10/15/22 Verify contact does not already exist before adding new contact
-    // TODO: 10/18/22 specify format for inputs? 
+
     // Creates a new Contact object via user inputs in the terminal
     public static Consumer<Scanner> addContact(Scanner sc) {
         String firstName;
@@ -69,17 +68,15 @@ public class ContactManager {
         String contact = sc.nextLine();
         result = contactList.stream()
                 .filter(x -> x.toLowerCase().contains(contact.toLowerCase())).collect(Collectors.toList());
-        for (int i = 0; i < result.size(); i++) {
-            out.println((i + 1) + ". | " + result.get(i));
-        }
         return result;
     }
 
-    // Searches contactList ArrayList based off a user input String, prints an array list of any Contact that has values that match the input. ignores case.
+    // Searches contactList ArrayList based off a user input String, ignores case.
 
     public static Consumer<Scanner> searchContact(Scanner sc) {
         out.println("\n" + Menus.breakPt + "\n" + StringUtils.center("SEARCH CONTACT", 50) +"\n" + Menus.breakPt);
         List<String> result = searchfunction(sc);
+        result.forEach(out::println);
         out.println(Menus.breakPt + "\n");
         if (!result.isEmpty()) {
             Menus.returnMenu(sc, "1. Search another contact", ContactManager::searchContact);
@@ -94,6 +91,9 @@ public class ContactManager {
     public static Consumer<Scanner> deleteContact(Scanner sc) {
         out.println("\n" + Menus.breakPt + "\n" + StringUtils.center("DELETE CONTACT", 50)  + "\n" + Menus.breakPt);
         List<String> result = searchfunction(sc);
+        for (int i = 0; i < result.size(); i++) {
+            out.println((i + 1) + result.get(i));
+        }
         int whichContact = 1;
         if (result.size() > 1) {
             out.println(Menus.breakPt + "\nSelect the contact you would like to delete:");
@@ -101,7 +101,7 @@ public class ContactManager {
             sc.nextLine();
         }
         int deleteIndex = contactList.indexOf(result.get(whichContact - 1));
-        out.println("\n" + Menus.breakPt + "\n" + contactList.remove(deleteIndex) + "has been deleted");
+        out.println("\n" + Menus.breakPt + "\n" +StringUtils.center("The following contact has been deleted", 50) + "\n" + Menus.breakPt + "\n" +  contactList.remove(deleteIndex)+ "\n");
         Menus.returnMenu(sc, "1. Delete another contact", ContactManager::deleteContact);
         out.println(Menus.breakPt + "\n\nThat name does not match any contact in the GREY");
         Menus.returnMenu(sc, "1. Return to Delete Contact", ContactManager::deleteContact);
