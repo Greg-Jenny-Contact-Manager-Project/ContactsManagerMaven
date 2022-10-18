@@ -11,7 +11,7 @@ public class Menus {
 
     // variables to make printing menus and messages more compact
     private static String byee = StringUtils.center("Thank you for using GREY Contact Manager!", 50);
-    public static String breakPt = "--------------------------------------------------";
+    public static String breakPt = StringUtils.repeat("-", 50);
 
     // Method accepts sc, a prompt, and a method. Prints prompt as menu item and inserts method in switch statement.
     public static Consumer<Scanner> returnMenu(Scanner sc, String prompt, Consumer<Scanner> method) {

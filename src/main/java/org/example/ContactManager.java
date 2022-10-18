@@ -25,7 +25,7 @@ public class ContactManager {
     // Prints the contactList in alphabetical order based on first name values
 
     public static void printList(Scanner sc) {
-        String header = "|" + StringUtils.center("NAME", 24) + "|" + StringUtils.center("PHONE", 23) + "|";
+        String header = "|" + StringUtils.center("NAME", 31) + "|" + StringUtils.center("PHONE", 16) + "|";
         out.println(header + "\n" + Menus.breakPt);
         Collections.sort(contactList);
         contactList.forEach(out::println);

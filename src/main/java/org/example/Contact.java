@@ -26,7 +26,7 @@ public class Contact  {
 
 // The toString Method overrides the java Object toString method and dictates how the object should be converted to a string
     public String toString() {
-        String stringContact = "|" + StringUtils.center(fullName, 24) + "|" + StringUtils.center(phone, 23) + "|";
+        String stringContact = "| " + StringUtils.center(firstName, 12) +"| " + StringUtils.center(lastName, 16) + "|" + StringUtils.center(phone, 16) + "|";
         return stringContact;
     }
 // - The StringUtils id part of the Apache common langs package
