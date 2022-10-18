@@ -9,11 +9,12 @@ import java.util.Scanner;
 import java.util.function.Consumer;
 
 public class Menus {
-    private static String byee = StringUtils.center("Thank you for using GREY Contact Manager!", 50);
 
+// variables to make printing menus and messages more compact
+    private static String byee = StringUtils.center("Thank you for using GREY Contact Manager!", 50);
     public static String breakPt = "--------------------------------------------------";
 
-    // Method accepts sc, a prompt, and a method. Prints prompt as menu item and inserts method in switch statement.
+// Method accepts sc, a prompt, and a method. Prints prompt as menu item and inserts method in switch statement.
     public static Consumer<Scanner> returnMenu(Scanner sc, String prompt, Consumer<Scanner> method) {
         System.out.println("\n" + breakPt + "\n" + prompt +
                 "\n2. Return to main menu\n" +
@@ -33,7 +34,7 @@ public class Menus {
         return method;
     }
 
-    //Overloaded of above to set default menu and methods for switch
+//Overloaded of above to set default menu and methods for switch - Only in use for 1. View Contacts
     public static void returnMenu(Scanner sc) {
         System.out.println("\n" + breakPt +
                 "\n1. Return to main menu\n" +
@@ -50,6 +51,9 @@ public class Menus {
         }
     }
 
+/*  1. Prints a goodbye messages
+    2. writes each String within the contactList array to a separate line in the contact.txt file
+    3. executes a System.exit to close the program */
     public static void exit() {
         try {
             System.out.println(breakPt + "\n" + byee + "\n" + breakPt);
@@ -60,7 +64,7 @@ public class Menus {
         }
     }
 
-    // Prints the main menu on application startup, runs the mainMenu Method for control.
+// Prints the main menu on application startup, runs the mainMenu Method for control.
     public static void printMainMenu(Scanner sc) {
         System.out.println(
                 breakPt + "\n" +
@@ -77,8 +81,8 @@ public class Menus {
         mainMenu(sc);
     }
 
-    // TODO: 10/15/22 try catch prevents failure if non int is inputted but exits the system when done.
-    // Main menu switch statement for navigation through the application
+    // TODO: 10/18/22 This try catch only exits the system. If I try to use recursion it runs the Method endlessly.
+// Main menu switch statement for navigation through the application
     public static void mainMenu(Scanner sc) {
         try {
             int choice = sc.nextInt();
