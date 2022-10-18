@@ -18,8 +18,7 @@ public class Menus {
         System.out.println("\n" + breakPt + "\n" + prompt +
                 "\n2. Return to main menu\n" +
                 "3. Exit\n" + breakPt);
-        int choice = sc.nextInt();
-        sc.nextLine();
+        int choice = getChoice(sc);
         switch (choice) {
             case 1:
                 Consumer<Scanner> method1 = method;
@@ -38,8 +37,7 @@ public class Menus {
         System.out.println("\n" + breakPt +
                 "\n1. Return to main menu\n" +
                 "2. Exit\n" + breakPt);
-        int choice = sc.nextInt();
-        sc.nextLine();
+        int choice = getChoice(sc);
         switch (choice) {
             case 1:
                 printMainMenu(sc);
