@@ -1,5 +1,5 @@
 package org.example;
-
+import org.apache.commons.lang3.StringUtils;
 public class Contact  {
     private String firstName;
     private String lastName;
@@ -24,8 +24,9 @@ public class Contact  {
         return phone;
     }
 
+
     public String toString() {
-        String stringContact = String.format("%-25s|%19s         |", fullName, phone);
+        String stringContact = "|" + StringUtils.center(fullName, 24) + "|" + StringUtils.center(phone, 23) + "|";
         return stringContact;
     }
 

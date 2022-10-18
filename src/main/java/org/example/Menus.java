@@ -1,5 +1,7 @@
 package org.example;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.InputMismatchException;
@@ -7,9 +9,9 @@ import java.util.Scanner;
 import java.util.function.Consumer;
 
 public class Menus {
-    private static String byee = "Thank you for using GREY Contact Manager!\n";
+    private static String byee = StringUtils.center("Thank you for using GREY Contact Manager!", 50);
 
-    public static String breakPt = "-------------------------------------------------------";
+    public static String breakPt = "--------------------------------------------------";
 
     // Method accepts sc, a prompt, and a method. Prints prompt as menu item and inserts method in switch statement.
     public static Consumer<Scanner> returnMenu(Scanner sc, String prompt, Consumer<Scanner> method) {
@@ -50,7 +52,7 @@ public class Menus {
 
     public static void exit() {
         try {
-            System.out.println(breakPt + "\n" + byee + breakPt);
+            System.out.println(breakPt + "\n" + byee + "\n" + breakPt);
             Files.write(ContactManager.filepath, ContactManager.contactList);
             System.exit(0);
         } catch (IOException e) {
@@ -61,17 +63,17 @@ public class Menus {
     // Prints the main menu on application startup, runs the mainMenu Method for control.
     public static void printMainMenu(Scanner sc) {
         System.out.println(
-                "-------------------------------------------------------\n" +
-                        "                       Welcome!\n" +
-                        "-------------------------------------------------------\n" +
+                breakPt + "\n" +
+                        StringUtils.center("Welcome", 50) + "\n" +
+                        breakPt +"\n" +
                         "1. View contacts\n" +
                         "2. Add a new contact\n" +
                         "3. Search a contact by name\n" +
                         "4. Delete an existing contact\n" +
-                        "5. Exit\n" +
-                        "-------------------------------------------------------\n" +
-                        "          Enter an option (1, 2, 3, 4, 5):\n" +
-                        "-------------------------------------------------------\n");
+                        "5. Exit\n" + breakPt +
+                        "\n" +
+                        StringUtils.center("Enter an option (1, 2, 3, 4, 5)", 50) + "\n" + breakPt +
+                        "\n");
         mainMenu(sc);
     }
 
